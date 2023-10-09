@@ -15,3 +15,13 @@ class AccountTestCase(TestCase):
         account = Account.objects.get(pk=1)
         self.assertEqual(account.balance, 0.00)
         self.assertEqual(account.user.username, "test_user")
+
+    def test_update_account(self):
+        account = Account.objects.get(pk=1)
+        self.assertEqual(account.balance, 0.00)
+
+        account.balance = 12.53
+        account.save()
+
+        updated_account = Account.objects.get(pk=1)
+        self.assertEqual(updated_account.balance, 12.53)
